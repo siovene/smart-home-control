@@ -1,0 +1,9 @@
+<ion-view view-title="Sensors">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="sensor in sensors" href="#/app/sensors/{{sensor.id}}">
+        {{sensor.name}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
