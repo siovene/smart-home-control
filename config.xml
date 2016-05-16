@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.example.SmarthomeDemo" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>SmarthomeDemo</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+
+
+    <platform name="android">
+        <preference name="android-minSdkVersion" value="19" />
+        <preference name="android-targetSdkVersion" value="23"/>
+        <!--
+            ldpi    : 36x36 px
+            mdpi    : 48x48 px
+            hdpi    : 72x72 px
+            xhdpi   : 96x96 px
+            xxhdpi  : 144x144 px
+            xxxhdpi : 192x192 px
+        -->
+        <icon src="app/images/icon/android/ldpi.png" density="ldpi" />
+        <icon src="app/images/icon/android/mdpi.png" density="mdpi" />
+        <icon src="app/images/icon/android/hdpi.png" density="hdpi" />
+        <icon src="app/images/icon/android/xhdpi.png" density="xhdpi" />
+        <icon src="app/images/icon/android/xxhdpi.png" density="xxhdpi" />
+        <icon src="app/images/icon/android/xxxhdpi.png" density="xxxhdpi" />
+    </platform>
+</widget>
