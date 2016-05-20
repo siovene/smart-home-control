@@ -2,8 +2,10 @@
     <ion-content>
         <div class="card sensor-card">
             <div class="item item-divider">
-                <img class="icon" ng-src="{{sensor.icon}}"/>
-                <h1>{{title}}</h1>
+                <h1>
+                    <i class="icon {{sensor.icon}}"></i>
+                    {{title}}
+                </h1>
             </div>
 
             <ion-toggle
@@ -13,6 +15,10 @@
                 ng-click="updateSensor()">
                 Status
             </ion-toggle>
+
+            <div ng-if="sensor.path === '/a/temperature'" class="item">
+                {{sensor.data.properties.temperature}} {{sensor.data.properties.units}}
+            </div>
 
         </div>
     </ion-content>
