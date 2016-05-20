@@ -1,9 +1,14 @@
 <ion-view view-title="Sensors">
-  <ion-content>
-    <ion-list>
-      <ion-item ng-repeat="sensor in sensors" href="#/app/sensors/{{sensor.id}}">
-        {{sensor.name}}
-      </ion-item>
-    </ion-list>
-  </ion-content>
+    <ion-content>
+        <h1 class="empty" ng-if="sensors.length == 0">
+            Discovering sensors...
+        </h1>
+
+        <ion-list ng-if="sensors.length > 0">
+            <ion-item class="icon-left sensor-item" ng-repeat="sensor in sensors" href="#/app/sensors/{{sensor.slug}}">
+                <img class="icon" ng-src="{{sensor.icon}}"/>
+                <span>{{sensor.name}}</span>
+            </ion-item>
+        </ion-list>
+    </ion-content>
 </ion-view>

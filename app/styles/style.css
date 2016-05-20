@@ -1,1 +1,31 @@
-/* Empty. Add your own CSS if you like */
+h1.empty {
+    color: grey;
+    font-size: 2em;
+    padding: 1em;
+    text-align: center;
+}
+
+.sensor-item .icon {
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+.sensor-item {
+    font-size: 24px;
+}
+
+.sensor-card .icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    margin-bottom: 1px;
+}
+
+.sensor-card > .item-divider:first-child h1 {
+    display: inline-block;
+    font-size: 24px;
+    margin-top: 0;
+}

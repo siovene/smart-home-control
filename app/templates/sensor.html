@@ -1,5 +1,19 @@
 <ion-view view-title="Sensor">
-  <ion-content>
-    <h1>Sensor</h1>
-  </ion-content>
+    <ion-content>
+        <div class="card sensor-card">
+            <div class="item item-divider">
+                <img class="icon" ng-src="{{sensor.icon}}"/>
+                <h1>{{title}}</h1>
+            </div>
+
+            <ion-toggle
+                ng-if="sensor.path === '/a/fan'"
+                ng-model="sensor.data.properties.value"
+                ng-checked="sensor.data.properties.value"
+                ng-click="updateSensor()">
+                Status
+            </ion-toggle>
+
+        </div>
+    </ion-content>
 </ion-view>
