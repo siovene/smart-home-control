@@ -13,6 +13,11 @@ angular.module('starter.services', [])
             name: 'Temperature',
             slug: 'temperature',
             icon: 'ion-thermometer'
+        },
+        '/a/rgbled': {
+            name: 'RGB Led',
+            slug: 'rgbled',
+            icon: 'ion-ios-lightbulb'
         }
     };
 

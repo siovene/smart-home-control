@@ -40,5 +40,25 @@ angular.module('starter.controllers', [])
         $scope.updateSensor = function() {
             OICService.updateSensor($scope.sensor.data);
         };
+
+        // Transitional model for the RGB Led sensor
+        if ($scope.sensor.path === '/a/rgbled') {
+            $scope.colorModel = {
+                rgb: {
+                    r: $scope.sensor.data.properties.rgbValue.split(',')[0],
+                    g: $scope.sensor.data.properties.rgbValue.split(',')[1],
+                    b: $scope.sensor.data.properties.rgbValue.split(',')[2],
+                }
+            };
+
+            $scope.applyRGBLed = function() {
+                $scope.sensor.data.properties.rgbValue =
+                    $scope.colorModel.rgb.r + ',' +
+                    $scope.colorModel.rgb.g + ',' +
+                    $scope.colorModel.rgb.b;
+
+                $scope.updateSensor();
+            };
+        }
     }
 });

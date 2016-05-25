@@ -20,6 +20,22 @@
                 {{sensor.data.properties.temperature}} {{sensor.data.properties.units}}
             </div>
 
+            <div class="item" ng-if="sensor.path === '/a/rgbled'">
+                <button
+                    class="button icon ion-edit"
+                    color-picker=""
+                    color-box="{{colorModel.rgb}}"
+                    model-mode="rgb"
+                    hide-reset="true"
+                    ng-model="colorModel.rgb">
+                    Change color
+                </button>
+                <button
+                    class="button icon ion-checkmark"
+                    style="float: right;"
+                    ng-click="applyRGBLed()">
+                    Apply
+                </button>
         </div>
     </ion-content>
 </ion-view>
