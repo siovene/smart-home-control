@@ -36,6 +36,14 @@
                     ng-click="applyRGBLed()">
                     Apply
                 </button>
-        </div>
+            </div>
+
+            <ion-toggle
+                ng-if="sensor.path === '/a/led'"
+                ng-model="sensor.data.properties.value"
+                ng-checked="sensor.data.properties.value"
+                ng-click="updateSensor()">
+                Status
+            </ion-toggle>
     </ion-content>
 </ion-view>

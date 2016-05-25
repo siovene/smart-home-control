@@ -18,6 +18,11 @@ angular.module('starter.services', [])
             name: 'RGB Led',
             slug: 'rgbled',
             icon: 'ion-ios-lightbulb'
+        },
+        '/a/led': {
+            name: "Led",
+            slug: "led",
+            icon: "ion-ios-lightbulb-outline"
         }
     };
 
