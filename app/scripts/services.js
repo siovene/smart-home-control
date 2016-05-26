@@ -20,9 +20,9 @@ angular.module('starter.services', [])
             icon: 'ion-ios-lightbulb'
         },
         '/a/led': {
-            name: "Led",
-            slug: "led",
-            icon: "ion-ios-lightbulb-outline"
+            name: 'Led',
+            slug: 'led',
+            icon: 'ion-ios-lightbulb-outline'
         }
     };
 
