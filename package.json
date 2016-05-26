@@ -1,6 +1,6 @@
 {
-  "name": "SmarthomeDemo",
-  "version": "0.0.0",
+  "name": "Smart Home Control",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {},
   "devDependencies": {
