@@ -1,3 +1,7 @@
+.bar-posirive .spinner {
+    stroke: #6FA0F3;
+}
+
 h1.empty {
     color: grey;
     font-size: 2em;
