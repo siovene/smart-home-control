@@ -26,6 +26,10 @@ angular.module('starter.services', [])
         }
     };
 
+    function _knownSensorsNumber() {
+        return Object.keys(_knownSensors).length;
+    }
+
     function _isKnownSensor(path) {
         return Object.keys(_knownSensors).indexOf(path) > -1;
     }
@@ -56,6 +60,7 @@ angular.module('starter.services', [])
 
     return {
         knownSensors: _knownSensors,
+        knownSensorsNumber: _knownSensorsNumber,
         isKnownSensor: _isKnownSensor,
         getSensorName: _getSensorName,
         getSensorSlug: _getSensorSlug,
@@ -85,6 +90,10 @@ angular.module('starter.services', [])
         }
     });
 
+    function _sensorsNumber() {
+        return Object.keys(_sensors).length;
+    }
+
     function _updateSensor(sensor) {
         if (_plugin !== null) {
             return _plugin.update(sensor);
@@ -106,6 +115,7 @@ angular.module('starter.services', [])
 
     return {
         sensors: function() { return _sensors; },
+        sensorsNumber: _sensorsNumber,
         updateSensor: _updateSensor,
         getSensorBySlug: _getSensorBySlug
     };

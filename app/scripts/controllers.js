@@ -2,11 +2,24 @@
 
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function() {
+.controller('AppCtrl', function($scope, DataService, OICService) {
+    $scope.appData = {
+        doneExploringSensors: false
+    };
+
+    $scope.$watch(function() { return OICService.sensors(); },
+        function() {
+            if (OICService.sensorsNumber() === DataService.knownSensorsNumber()) {
+                $scope.appData.doneExploringSensors = true;
+            } else {
+                $scope.appData.doneExploringSensors = false;
+            }
+        }, true);
 })
 
 .controller('SensorsCtrl', function($scope, DataService, OICService) {
-    $scope.sensors = OICService.sensors();
+    $scope.sensors = [];
+
     $scope.$watch(function() { return OICService.sensors(); },
         function(newValue) {
             $scope.sensors = [];
