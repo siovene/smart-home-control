@@ -45,5 +45,19 @@
                 ng-click="updateSensor()">
                 Status
             </ion-toggle>
+
+            <!-- ===============================================================
+            SOLAR PANEL
+            ================================================================ -->
+            <div ng-if="sensor.path === '/a/solar'" class="item range">
+                <input type="range" ng-model="sensor.data.properties.tiltPercentage" />
+            </div>
+            <div ng-if="sensor.path === '/a/solar'" class="padding">
+                <button
+                    class="button button-positive button-block icon ion-checkmark"
+                    ng-click="updateSensor()">
+                    Apply
+                </button>
+            </div>
     </ion-content>
 </ion-view>

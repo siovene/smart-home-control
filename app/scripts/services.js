@@ -23,6 +23,11 @@ angular.module('starter.services', [])
             name: 'Led',
             slug: 'led',
             icon: 'ion-ios-lightbulb-outline'
+        },
+        '/a/solar': {
+            name: 'Solar panel',
+            slug: 'solar',
+            icon: 'ion-ios-sunny'
         }
     };
 
