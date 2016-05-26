@@ -8,6 +8,9 @@
                 </h1>
             </div>
 
+            <!-- ===============================================================
+            FAN
+            ================================================================ -->
             <ion-toggle
                 ng-if="sensor.path === '/a/fan'"
                 ng-model="sensor.data.properties.value"
@@ -16,10 +19,16 @@
                 Status
             </ion-toggle>
 
+            <!-- ===============================================================
+            TEMPERATURE
+            ================================================================ -->
             <div ng-if="sensor.path === '/a/temperature'" class="item">
                 {{sensor.data.properties.temperature}} {{sensor.data.properties.units}}
             </div>
 
+            <!-- ===============================================================
+            RGB LED
+            ================================================================ -->
             <div class="item" ng-if="sensor.path === '/a/rgbled'">
                 <button
                     class="button icon ion-edit"
@@ -38,6 +47,9 @@
                 </button>
             </div>
 
+            <!-- ===============================================================
+            LED
+            ================================================================ -->
             <ion-toggle
                 ng-if="sensor.path === '/a/led'"
                 ng-model="sensor.data.properties.value"
