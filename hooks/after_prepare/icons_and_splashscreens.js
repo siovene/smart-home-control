@@ -51,6 +51,7 @@ function copyFile (src, dest, ncpOpts, callback) {
 var platforms = _.filter(fs.readdirSync('platforms'), function (file) {
   return fs.statSync(path.resolve('platforms', file)).isDirectory();
 });
+console.log(platforms)
 _.each(platforms, function (platform) {
   var base = path.resolve('platforms', platform, BASES[platform]);
   glob(base + '/**/*.png', function (err, files) {
