@@ -28,6 +28,11 @@ angular.module('starter.services', [])
             name: 'Solar panel',
             slug: 'solar',
             icon: 'ion-ios-sunny'
+        },
+        '/a/gas': {
+            name: 'CO2 level',
+            slug: 'gas',
+            icon: 'ion-ios-flame'
         }
     };
 

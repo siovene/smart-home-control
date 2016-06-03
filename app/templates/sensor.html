@@ -73,5 +73,14 @@
                     Apply
                 </button>
             </div>
+
+            <!-- ===============================================================
+            CO2 LEVEL
+            ================================================================ -->
+            <div ng-id="sensor.path === '/a/gas'" class="item">
+                <span ng-if="sensor.data.properties.value === false" class="balanced">Safe</span>
+                <span ng-if="sensor.data.properties.value === true" class="assertive">Not safe</span>
+            </div>
+
     </ion-content>
 </ion-view>
