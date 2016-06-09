@@ -7,7 +7,8 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', [
-    'ionic', 'starter.services', 'starter.controllers', 'ionic-color-picker'])
+    'ionic', 'starter.services', 'starter.controllers', 'starter.directives',
+    'ionic-color-picker'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -50,16 +51,6 @@ angular.module('starter', [
       'menuContent': {
         templateUrl: 'templates/sensors.html',
         controller: 'SensorsCtrl'
-      }
-    }
-  })
-
-  .state('app.sensor', {
-    url: '/sensors/:sensorSlug',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/sensor.html',
-        controller: 'SensorCtrl'
       }
     }
   });

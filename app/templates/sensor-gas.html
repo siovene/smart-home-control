@@ -1,0 +1,9 @@
+<span class="sensor-text-value">
+    <div ng-if="sensor.data.properties.value !== undefined">
+        <span ng-if="sensor.data.properties.value === false" class="balanced">Safe</span>
+        <span ng-if="sensor.data.properties.value === true" class="assertive">Not safe</span>
+    </div>
+    <div ng-if="sensor.data.properties.value === undefined">
+        ...
+    </div>
+</span>
