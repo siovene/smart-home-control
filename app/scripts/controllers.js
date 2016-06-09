@@ -26,52 +26,15 @@ angular.module('starter.controllers', [])
             angular.forEach(newValue, function(data, path) {
                 $scope.sensors.push({
                     path: path,
-                    name: DataService.getSensorName(path),
-                    slug: DataService.getSensorSlug(path),
-                    icon: DataService.getSensorIcon(path),
+                    info: DataService.getSensorInfo(path),
                     data: data
                 });
             });
         }, true);
 })
 
-.controller('SensorCtrl', function($scope, $stateParams, DataService, OICService) {
-    var sensor = OICService.getSensorBySlug($stateParams.sensorSlug);
-
-    if (sensor) {
-        var path = sensor.id.resourcePath;
-
-        $scope.title = DataService.getSensorName(path);
-        $scope.sensor = {
-            path: path,
-            name: DataService.getSensorName(path),
-            slug: DataService.getSensorSlug(path),
-            icon: DataService.getSensorIcon(path),
-            data: sensor
-        };
-
-        $scope.updateSensor = function() {
-            OICService.updateSensor($scope.sensor.data);
-        };
-
-        // Transitional model for the RGB Led sensor
-        if ($scope.sensor.path === '/a/rgbled') {
-            $scope.colorModel = {
-                rgb: {
-                    r: $scope.sensor.data.properties.rgbValue.split(',')[0],
-                    g: $scope.sensor.data.properties.rgbValue.split(',')[1],
-                    b: $scope.sensor.data.properties.rgbValue.split(',')[2],
-                }
-            };
-
-            $scope.applyRGBLed = function() {
-                $scope.sensor.data.properties.rgbValue =
-                    $scope.colorModel.rgb.r + ',' +
-                    $scope.colorModel.rgb.g + ',' +
-                    $scope.colorModel.rgb.b;
-
-                $scope.updateSensor();
-            };
-        }
-    }
+.controller('UpdateSensorCtrl', function($scope, OICService) {
+    $scope.onChange = function() {
+        OICService.updateSensor($scope.sensor.data);
+    };
 });

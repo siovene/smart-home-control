@@ -6,33 +6,23 @@ angular.module('starter.services', [])
     var _knownSensors = {
         '/a/fan': {
             name: 'Fan',
-            slug: 'fan',
             icon: 'ion-nuclear'
         },
         '/a/temperature': {
             name: 'Temperature',
-            slug: 'temperature',
             icon: 'ion-thermometer'
-        },
-        '/a/rgbled': {
-            name: 'RGB Led',
-            slug: 'rgbled',
-            icon: 'ion-ios-lightbulb'
         },
         '/a/led': {
             name: 'Led',
-            slug: 'led',
             icon: 'ion-ios-lightbulb-outline'
         },
         '/a/solar': {
             name: 'Solar panel',
-            slug: 'solar',
             icon: 'ion-ios-sunny'
         },
         '/a/gas': {
             name: 'CO2 level',
-            slug: 'gas',
-            icon: 'ion-ios-flame'
+            icon: 'ion-ios-flame',
         }
     };
 
@@ -44,25 +34,9 @@ angular.module('starter.services', [])
         return Object.keys(_knownSensors).indexOf(path) > -1;
     }
 
-    function _getSensorName(path) {
+    function _getSensorInfo(path) {
         if (_isKnownSensor(path)) {
-            return _knownSensors[path].name;
-        }
-
-        return null;
-    }
-
-    function _getSensorSlug(path) {
-        if (_isKnownSensor(path)) {
-            return _knownSensors[path].slug;
-        }
-
-        return null;
-    }
-
-    function _getSensorIcon(path) {
-        if (_isKnownSensor(path)) {
-            return _knownSensors[path].icon;
+            return _knownSensors[path];
         }
 
         return null;
@@ -72,28 +46,52 @@ angular.module('starter.services', [])
         knownSensors: _knownSensors,
         knownSensorsNumber: _knownSensorsNumber,
         isKnownSensor: _isKnownSensor,
-        getSensorName: _getSensorName,
-        getSensorSlug: _getSensorSlug,
-        getSensorIcon: _getSensorIcon
+        getSensorInfo: _getSensorInfo
     };
 })
 
-.factory('OICService', function($ionicPlatform, $interval, DataService) {
+.factory('OICService', function($ionicPlatform, $interval, $rootScope, DataService) {
     var _sensors = {},
-        _plugin = null;
+        _plugin = null,
+        _discoverInterval = null;
 
     $ionicPlatform.ready(function() {
         _plugin = cordova.require('cordova/plugin/oic');
         if (_plugin !== null) {
             _plugin.onresourcefound = function(event) {
-                var path = event.resource.id.resourcePath;
-                if (DataService.isKnownSensor(path)) {
-                    _sensors[path] = event.resource;
-                }
+                $rootScope.$apply(function() {
+                    var path = event.resource.id.resourcePath;
+
+                    if (path in _sensors) {
+                        return;
+                    }
+
+                    if (DataService.isKnownSensor(path)) {
+                        _sensors[path] = event.resource;
+                    }
+
+                    if (_sensorsNumber() === DataService.knownSensorsNumber()) {
+                        $interval.cancel(_discoverInterval);
+                    }
+                });
+            };
+
+            _plugin.onupdate = function(event) {
+                $rootScope.$apply(function() {
+                    angular.forEach(event.updates, function(update) {
+                        var key = Object.keys(update)[0],
+                            repr = update[key],
+                            path = '/' + key.split('/').splice(-2).join('/');
+
+                        if (path in _sensors) {
+                            _sensors[path].properties = repr;
+                        }
+                    });
+                });
             };
 
             _plugin.setBackend('iotivity').then(function() {
-                $interval(function() {
+                _discoverInterval = $interval(function() {
                     _plugin.findResources();
                 }, 1000);
             });
@@ -110,23 +108,9 @@ angular.module('starter.services', [])
         }
     }
 
-    function _getSensorBySlug(slug) {
-        var ret;
-
-        angular.forEach(_sensors, function(sensor, path) {
-            if (DataService.knownSensors[path].slug === slug) {
-                ret = sensor;
-                return;
-            }
-        });
-
-        return ret;
-    }
-
     return {
         sensors: function() { return _sensors; },
         sensorsNumber: _sensorsNumber,
         updateSensor: _updateSensor,
-        getSensorBySlug: _getSensorBySlug
     };
 });

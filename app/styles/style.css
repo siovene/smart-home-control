@@ -8,3 +8,20 @@ h1.empty {
     padding: 1em;
     text-align: center;
 }
+
+.sensor-item {
+    height: 70px;
+}
+
+.sensor-item .sensor-label, .sensor-item .sensor-text-value {
+    line-height: 38px;
+}
+
+.sensor-item .sensor-ui {
+    float: right;
+}
+
+.sensor-item .range, .sensor-item .range input {
+    margin: 0;
+    padding: 0;
+}

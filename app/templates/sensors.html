@@ -5,15 +5,7 @@
         </h1>
 
         <ion-list ng-if="sensors.length > 0">
-            <ion-item
-                class="item-icon-left item-icon-right sensor-item"
-                ng-repeat="sensor in sensors"
-                href="#/app/sensors/{{sensor.slug}}">
-
-                <i class="icon {{sensor.icon}}"></i>
-                {{sensor.name}}
-                <i class="icon ion-chevron-right float-right"></i>
-            </ion-item>
+            <sensor-item ng-if="sensors.length > 0" ng-repeat="sensor in sensors"/>
         </ion-list>
     </ion-content>
 </ion-view>
