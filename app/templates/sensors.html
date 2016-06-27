@@ -1,11 +1,11 @@
 <ion-view view-title="Smart Home Control">
     <ion-content>
-        <h1 class="empty" ng-if="sensors.length == 0">
+        <h1 class="empty" ng-show="sensors.length == 0">
             Discovering sensors...
         </h1>
 
-        <ion-list ng-if="sensors.length > 0">
-            <sensor-item ng-if="sensors.length > 0" ng-repeat="sensor in sensors"/>
+        <ion-list>
+            <sensor-item ng-repeat="sensor in sensors"/>
         </ion-list>
     </ion-content>
 </ion-view>

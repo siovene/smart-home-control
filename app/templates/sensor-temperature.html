@@ -1,8 +1,8 @@
 <span class="sensor-text-value">
-    <div ng-if="sensor.data.properties.temperature !== undefined">
+    <div ng-show="sensor.data.properties.temperature !== undefined">
         {{sensor.data.properties.temperature}}&deg;{{sensor.data.properties.units}}
     </div>
-    <div ng-if="sensor.data.properties.temperature === undefined">
+    <div ng-show="sensor.data.properties.temperature === undefined">
         ...
     </div>
 </span>

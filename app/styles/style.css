@@ -25,3 +25,13 @@ h1.empty {
     margin: 0;
     padding: 0;
 }
+
+.sensor-ui .color-picker-button {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    border: 1px solid white;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    border-radius: 18px;
+}

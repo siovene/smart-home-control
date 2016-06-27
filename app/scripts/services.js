@@ -8,21 +8,25 @@ angular.module('starter.services', [])
             name: 'Fan',
             icon: 'ion-nuclear'
         },
+        '/a/gas': {
+            name: 'CO2 level',
+            icon: 'ion-ios-flame',
+        },
+        '/a/led': {
+            name: 'LED',
+            icon: 'ion-ios-lightbulb-outline'
+        },
+        '/a/rgbled': {
+            name: 'RGB LED',
+            icon: 'ion-ios-lightbulb'
+        },
         '/a/temperature': {
             name: 'Temperature',
             icon: 'ion-thermometer'
         },
-        '/a/led': {
-            name: 'Led',
-            icon: 'ion-ios-lightbulb-outline'
-        },
         '/a/solar': {
             name: 'Solar panel',
             icon: 'ion-ios-sunny'
-        },
-        '/a/gas': {
-            name: 'CO2 level',
-            icon: 'ion-ios-flame',
         }
     };
 
@@ -51,7 +55,7 @@ angular.module('starter.services', [])
 })
 
 .factory('OICService', function($ionicPlatform, $interval, $rootScope, DataService) {
-    var _sensors = {},
+    var _sensors = [],
         _plugin = null,
         _discoverInterval = null;
 
@@ -59,32 +63,45 @@ angular.module('starter.services', [])
         _plugin = cordova.require('cordova/plugin/oic');
         if (_plugin !== null) {
             _plugin.onresourcefound = function(event) {
-                $rootScope.$apply(function() {
-                    var path = event.resource.id.resourcePath;
+                $rootScope.$applyAsync(function() {
+                    var path = event.resource.id.resourcePath,
+                        found = false;
 
-                    if (path in _sensors) {
-                        return;
-                    }
+                    angular.forEach(_sensors, function(sensor) {
+                        if (sensor.path === path) {
+                            found = true;
+                        }
+                    });
 
-                    if (DataService.isKnownSensor(path)) {
-                        _sensors[path] = event.resource;
-                    }
+                    if (!found) {
+                        if (DataService.isKnownSensor(path)) {
+                            _sensors.push({
+                                path: path,
+                                info: DataService.getSensorInfo(path),
+                                data: event.resource
+                            });
+                        }
 
-                    if (_sensorsNumber() === DataService.knownSensorsNumber()) {
-                        $interval.cancel(_discoverInterval);
+                        if (_sensorsNumber() === DataService.knownSensorsNumber()) {
+                            $interval.cancel(_discoverInterval);
+                        }
                     }
                 });
             };
 
             _plugin.onupdate = function(event) {
-                $rootScope.$apply(function() {
-                    angular.forEach(event.updates, function(update) {
-                        var key = Object.keys(update)[0],
-                            repr = update[key],
-                            path = '/' + key.split('/').splice(-2).join('/');
+                angular.forEach(event.updates, function(update) {
+                    var key = Object.keys(update)[0],
+                        repr = update[key],
+                        path = '/' + key.split('/').splice(-2).join('/');
 
-                        if (path in _sensors) {
-                            _sensors[path].properties = repr;
+                    angular.forEach(_sensors, function(sensor) {
+                        if (sensor.path === path &&
+                            !angular.equals(sensor.data.properties, repr))
+                        {
+                            $rootScope.$applyAsync(function() {
+                                sensor.data.properties = repr;
+                            });
                         }
                     });
                 });
@@ -99,7 +116,7 @@ angular.module('starter.services', [])
     });
 
     function _sensorsNumber() {
-        return Object.keys(_sensors).length;
+        return _sensors.length;
     }
 
     function _updateSensor(sensor) {
@@ -109,7 +126,7 @@ angular.module('starter.services', [])
     }
 
     return {
-        sensors: function() { return _sensors; },
+        sensors: _sensors,
         sensorsNumber: _sensorsNumber,
         updateSensor: _updateSensor,
     };
