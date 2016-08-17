@@ -75,6 +75,22 @@ angular.module('starter.services', [])
 
                     if (!found) {
                         if (DataService.isKnownSensor(path)) {
+                            event.resource.onupdate = function(event) {
+                                angular.forEach(event.updates, function(update) {
+                                    var key = Object.keys(update)[0],
+                                        repr = update[key],
+                                        path = '/' + key.split('/').splice(-2).join('/');
+
+                                    angular.forEach(_sensors, function(sensor) {
+                                        if (sensor.path === path &&
+                                            !angular.equals(sensor.data.properties, repr))
+                                        {
+                                            sensor.data.properties = repr;
+                                        }
+                                    });
+                                });
+                            };
+
                             _sensors.push({
                                 path: path,
                                 info: DataService.getSensorInfo(path),
@@ -86,24 +102,6 @@ angular.module('starter.services', [])
                             $interval.cancel(_discoverInterval);
                         }
                     }
-                });
-            };
-
-            _plugin.onupdate = function(event) {
-                angular.forEach(event.updates, function(update) {
-                    var key = Object.keys(update)[0],
-                        repr = update[key],
-                        path = '/' + key.split('/').splice(-2).join('/');
-
-                    angular.forEach(_sensors, function(sensor) {
-                        if (sensor.path === path &&
-                            !angular.equals(sensor.data.properties, repr))
-                        {
-                            $rootScope.$applyAsync(function() {
-                                sensor.data.properties = repr;
-                            });
-                        }
-                    });
                 });
             };
 
