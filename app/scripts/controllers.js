@@ -2,13 +2,13 @@
 
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, DataService, OICService) {
+.controller('AppCtrl', function($scope, DataService, OCFService) {
     $scope.appData = {
         doneExploringSensors: false
     };
 
-    $scope.$watch(function() { return OICService.sensors; }, function() {
-        if (OICService.sensorsNumber() === DataService.knownSensorsNumber()) {
+    $scope.$watch(function() { return OCFService.sensors; }, function() {
+        if (OCFService.sensorsNumber() === DataService.knownSensorsNumber()) {
             $scope.appData.doneExploringSensors = true;
         } else {
             $scope.appData.doneExploringSensors = false;
@@ -16,17 +16,17 @@ angular.module('starter.controllers', [])
     }, true);
 })
 
-.controller('SensorsCtrl', function($scope, DataService, OICService) {
-    $scope.sensors = OICService.sensors;
+.controller('SensorsCtrl', function($scope, DataService, OCFService) {
+    $scope.sensors = OCFService.sensors;
 })
 
-.controller('UpdateSensorCtrl', function($scope, OICService) {
+.controller('UpdateSensorCtrl', function($scope, OCFService) {
     $scope.onChange = function() {
-        OICService.updateSensor($scope.sensor.data);
+        OCFService.updateSensor($scope.sensor.data);
     };
 })
 
-.controller('RGBLedCtrl', function($scope, OICService) {
+.controller('RGBLedCtrl', function($scope, OCFService) {
     // TODO: embed this in the directive
 
     var rgb = $scope.sensor.data.properties.rgbValue;
@@ -45,6 +45,6 @@ angular.module('starter.controllers', [])
             $scope.color.r,
             $scope.color.g,
             $scope.color.b].join(',');
-        OICService.updateSensor($scope.sensor.data);
+        OCFService.updateSensor($scope.sensor.data);
     }, true);
 });

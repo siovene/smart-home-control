@@ -5,7 +5,7 @@ A simple app for the Cordova OCF plugin, that interfaces with a smart home proto
 
 # In short
 
-This app uses the [cordova-plugin-oic](https://github.com/siovene/cordova-plugin-oic/) and therefore the [Iotivity project](https://www.iotivity.org/) to control a Smart Home prototype.
+This app uses the [cordova-plugin-ocf](https://github.com/siovene/cordova-plugin-ocf/) and therefore the [Iotivity project](https://www.iotivity.org/) to control a Smart Home prototype.
 
 
 # Build instructions

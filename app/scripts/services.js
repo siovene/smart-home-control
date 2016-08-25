@@ -54,13 +54,13 @@ angular.module('starter.services', [])
     };
 })
 
-.factory('OICService', function($ionicPlatform, $interval, $rootScope, DataService) {
+.factory('OCFService', function($ionicPlatform, $interval, $rootScope, DataService) {
     var _sensors = [],
         _plugin = null,
         _discoverInterval = null;
 
     $ionicPlatform.ready(function() {
-        _plugin = cordova.require('cordova/plugin/oic');
+        _plugin = cordova.require('cordova/plugin/ocf');
         if (_plugin !== null) {
             _plugin.onresourcefound = function(event) {
                 $rootScope.$applyAsync(function() {
