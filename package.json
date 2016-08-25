@@ -53,6 +53,6 @@
     "org.apache.cordova.device",
     "org.apache.cordova.console",
     "com.ionic.keyboard",
-    "https://github.com/siovene/cordova-plugin-ocf.git#v0.4.0"
+    "cordova-plugin-ocf"
   ]
 }
