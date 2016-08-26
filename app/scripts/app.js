@@ -8,7 +8,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', [
     'ionic', 'starter.services', 'starter.controllers', 'starter.directives',
-    'ionic-color-picker'])
+    'ionic-color-picker', 'LocalStorageModule'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -26,7 +26,9 @@ angular.module('starter', [
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider) {
+  localStorageServiceProvider.setPrefix('smarthome-control');
+
   $stateProvider
 
   .state('app', {
@@ -51,6 +53,16 @@ angular.module('starter', [
       'menuContent': {
         templateUrl: 'templates/sensors.html',
         controller: 'SensorsCtrl'
+      }
+    }
+  })
+
+  .state('app.settings', {
+    url: '/settings',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/settings.html',
+        controller: 'SettingsCtrl'
       }
     }
   });

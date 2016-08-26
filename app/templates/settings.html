@@ -1,0 +1,11 @@
+<ion-view view-title="Smart Home Control">
+  <ion-content>
+    <div class="list">
+        <ion-toggle
+            ng-repeat="item in settings"
+            ng-model="item.checked"
+            ng-change="save()">
+            {{item.text}}
+        </ion-toggle>
+  </ion-content>
+</ion-view>

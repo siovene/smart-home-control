@@ -54,10 +54,44 @@ angular.module('starter.services', [])
     };
 })
 
+.factory('SettingsService', function(localStorageService) {
+    var _settings = [
+        { slug: 'continuous-discovery', text: 'Continuous discovery', checked: true }
+    ];
+
+    function _save() {
+        for (var i = 0; i < _settings.length; i++) {
+            localStorageService.set(_settings[i].slug, _settings[i].checked);
+        }
+    }
+
+    function _init() {
+        for (var i = 0; i < _settings.length; i++) {
+            _settings[i].checked = localStorageService.get(_settings[i].slug);
+        }
+    }
+
+    function _get(slug) {
+        for (var i = 0; i < _settings.length; i++) {
+            if (_settings[i].slug === slug) {
+                return _settings[i].checked;
+            }
+        }
+
+        return null;
+    }
+
+    return {
+        settings: _settings,
+        save: _save,
+        init: _init,
+        get: _get
+    };
+})
+
 .factory('OCFService', function($ionicPlatform, $interval, $rootScope, DataService) {
     var _sensors = [],
-        _plugin = null,
-        _discoverInterval = null;
+        _plugin = null;
 
     $ionicPlatform.ready(function() {
         _plugin = cordova.require('cordova/plugin/ocf');
@@ -97,21 +131,17 @@ angular.module('starter.services', [])
                                 data: event.resource
                             });
                         }
-
-                        if (_sensorsNumber() === DataService.knownSensorsNumber()) {
-                            $interval.cancel(_discoverInterval);
-                        }
                     }
                 });
             };
 
-            _plugin.setBackend('iotivity').then(function() {
-                _discoverInterval = $interval(function() {
-                    _plugin.findResources();
-                }, 1000);
-            });
+            _plugin.setBackend('iotivity');
         }
     });
+
+    function _discover() {
+        return _plugin.findResources();
+    }
 
     function _sensorsNumber() {
         return _sensors.length;
@@ -127,5 +157,6 @@ angular.module('starter.services', [])
         sensors: _sensors,
         sensorsNumber: _sensorsNumber,
         updateSensor: _updateSensor,
+        discover: _discover
     };
 });

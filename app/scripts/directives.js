@@ -46,7 +46,7 @@ angular.module('starter.directives', [])
     };
 })
 
-.directive('sensorRgbled', function(OCFService) {
+.directive('sensorRgbled', function() {
     return {
         restrict: 'AE',
         templateUrl: 'templates/sensor-rgbled.html'

@@ -10,7 +10,10 @@
       </ion-nav-buttons>
 
       <ion-nav-buttons side="right">
-        <ion-spinner ng-hide="appData.doneExploringSensors"></ion-spinner>
+        <ion-spinner ng-show="!appData.discovery.done && appData.discovery.continuous"></ion-spinner>
+        <button class="button" ng-show="appData.discovery.done && !appData.discovery.continuous" ng-click="discover()">
+            <i class="icon ion-refresh"></i>
+        </button>
       </ion-nav-buttons>
 
     </ion-nav-bar>
@@ -25,6 +28,9 @@
       <ion-list>
         <ion-item menu-close href="#/app/sensors">
           Sensors
+        </ion-item>
+        <ion-item menu-close href="#/app/settings">
+          Settings
         </ion-item>
         <ion-item menu-close href="#/app/about">
           About

@@ -2,18 +2,68 @@
 
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, DataService, OCFService) {
+.controller('AppCtrl', function($scope, $interval, DataService, OCFService, SettingsService) {
+    var discoveryInterval = null;
+
+    function beginContinuousDiscovery() {
+        discoveryInterval = $interval(function() {
+            OCFService.discover();
+            $scope.appData.discovery.done = false;
+            $scope.appData.discovery.continuous = true;
+        }, 1000);
+    }
+
+    function suspendContinuousDiscovery() {
+        if (discoveryInterval !== null) {
+            $interval.cancel(discoveryInterval);
+            $scope.appData.discovery.done = true;
+            $scope.appData.discovery.continuous = false;
+        }
+    }
+
+    function inDiscoveryLoop() {
+        return discoveryInterval !== null;
+    }
+
+    SettingsService.init();
+
     $scope.appData = {
-        doneExploringSensors: false
+        discovery: {
+            done: true,
+            continuous: SettingsService.get('continuous-discovery')
+        }
+    };
+
+    $scope.discover = function() {
+        OCFService.discover();
     };
 
     $scope.$watch(function() { return OCFService.sensors; }, function() {
         if (OCFService.sensorsNumber() === DataService.knownSensorsNumber()) {
-            $scope.appData.doneExploringSensors = true;
+            suspendContinuousDiscovery();
+            $scope.appData.discovery.done = true;
         } else {
-            $scope.appData.doneExploringSensors = false;
+            if ($scope.appData.discovery.continuous) {
+                $scope.appData.discovery.done = false;
+            }
         }
     }, true);
+
+    $scope.$watch(function() { return SettingsService.settings; }, function() {
+        $scope.appData.discovery.continuous = SettingsService.get('continuous-discovery');
+        if ($scope.appData.discovery.continuous && !inDiscoveryLoop()) {
+            beginContinuousDiscovery();
+        } else if (!$scope.appData.discovery.continuous && inDiscoveryLoop()) {
+            suspendContinuousDiscovery();
+        }
+    }, true);
+})
+
+.controller('SettingsCtrl', function($scope, SettingsService) {
+    $scope.settings = SettingsService.settings;
+    $scope.save = function() {
+        SettingsService.save();
+    };
 })
 
 .controller('SensorsCtrl', function($scope, DataService, OCFService) {

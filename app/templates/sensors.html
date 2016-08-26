@@ -1,7 +1,11 @@
 <ion-view view-title="Smart Home Control">
     <ion-content>
-        <h1 class="empty" ng-show="sensors.length == 0">
+        <h1 class="empty" ng-show="appData.discovery.continuous && sensors.length === 0">
             Discovering sensors...
+        </h1>
+
+        <h1 class="empty" ng-show="!appData.discovery.continuous && sensors.length === 0">
+            No sensors. Refresh to discover.
         </h1>
 
         <ion-list>
