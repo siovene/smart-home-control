@@ -1,0 +1,9 @@
+<span class="sensor-text-value">
+    <div ng-show="sensor.data.properties.value !== undefined">
+        <span ng-show="sensor.data.properties.value === true" class="balanced">Movement detected</span>
+        <span ng-show="sensor.data.properties.value === false" class="assertive">No Movement</span>
+    </div>
+    <div ng-show="sensor.data.properties.value === undefined">
+        ...
+    </div>
+</span>

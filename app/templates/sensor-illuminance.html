@@ -1,0 +1,8 @@
+<span class="sensor-text-value">
+    <div ng-show="sensor.data.properties.illuminance !== undefined">
+        {{sensor.data.properties.illuminance}} lux
+    </div>
+    <div ng-show="sensor.data.properties.illuminance === undefined">
+        ...
+    </div>
+</span>

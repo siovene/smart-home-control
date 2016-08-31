@@ -65,4 +65,39 @@ angular.module('starter.directives', [])
         restrict: 'AE',
         templateUrl: 'templates/sensor-solar.html'
     };
+})
+
+.directive('sensorBuzzer', function() {
+    return {
+        restrict: 'AE',
+        templateUrl: 'templates/sensor-buzzer.html'
+    };
+})
+
+.directive('sensorMotion', function() {
+    return {
+        restrict: 'AE',
+        templateUrl: 'templates/sensor-motion.html'
+    };
+})
+
+.directive('sensorIlluminance', function() {
+    return {
+        restrict: 'AE',
+        templateUrl: 'templates/sensor-illuminance.html'
+    };
+})
+
+.directive('sensorButton', function() {
+    return {
+        restrict: 'AE',
+        templateUrl: 'templates/sensor-button.html'
+    };
+})
+
+.directive('sensorButtonToggle', function() {
+    return {
+        restrict: 'AE',
+        templateUrl: 'templates/sensor-button-toggle.html'
+    };
 });
