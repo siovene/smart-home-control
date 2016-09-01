@@ -1,7 +1,10 @@
-<div class="range">
+<label class="toggle toggle-positive">
     <input
-        type="range"
-        ng-model="sensor.data.properties.tiltPercentage"
+        type="checkbox"
+        ng-model="sensor.data.properties.simulationMode"
         ng-controller="UpdateSensorCtrl"
-        on-release="onChange()">
-</div>
+        ng-change="onChange()">
+    <div class="track">
+        <div class="handle"></div>
+    </div>
+</label>
