@@ -27,6 +27,26 @@ angular.module('starter.services', [])
         '/a/solar': {
             name: 'Solar panel',
             icon: 'ion-ios-sunny'
+        },
+        '/a/buzzer': {
+            name: 'Buzzer',
+            icon: 'ion-volume-high'
+        },
+        '/a/pir': {
+            name: 'Motion',
+            icon: 'ion-android-walk'
+        },
+        '/a/illuminance': {
+            name: 'Illuminance',
+            icon: 'ion-ios-moon'
+        },
+        '/a/button': {
+            name: 'Button',
+            icon: 'ion-toggle'
+        },
+        '/a/button-toggle': {
+            name: 'Button Toggle',
+            icon: 'ion-toggle'
         }
     };
 
