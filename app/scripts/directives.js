@@ -100,4 +100,11 @@ angular.module('starter.directives', [])
         restrict: 'AE',
         templateUrl: 'templates/sensor-button-toggle.html'
     };
+})
+
+.directive('sensorSwitch', function() {
+    return {
+        restrict: 'AE',
+        templateUrl: 'templates/sensor-switch.html'
+    };
 });

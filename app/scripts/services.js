@@ -47,6 +47,10 @@ angular.module('starter.services', [])
         '/a/button-toggle': {
             name: 'Button Toggle',
             icon: 'ion-toggle'
+        },
+        '/a/binarySwitch': {
+            name: 'Switch',
+            icon: 'ion-toggle-filled'
         }
     };
 
