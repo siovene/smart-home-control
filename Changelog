@@ -1,0 +1,38 @@
+2016-09-09 Salvatore Iovene <salvatore.iovene@intel.com>
+
+	* Version 0.6.0
+	* Add setting to enable/disable automatic discovery
+	* Update some NPM dependencies
+	* Use simulation mode (rather than tilt percentage) in solar sensor UI
+	* Support new sensors: motion, iluminance, buzzer, button, switch
+
+2016-08-25 Salvatore Iovene <salvatore.iovene@intel.com>
+
+	* Version 0.5.0
+	* Rename all instances of OIC to OCF
+	* Use the Cordova plugin from NPM in version 0.5.0
+
+2016-08-17 Salvatore Iovene <salvatore.iovene@intel.com>
+
+	* Version 0.4.0
+	* Refactor 'onupdate' API to match cordova-plugin-ocf 0.4.0 and the spec
+
+2016-06-30 Salvatore Iovene <salvatore.iovene@intel.com>
+
+	* Version 0.3.0
+	* Restore the RGB led
+	* Performance improvements
+
+2016-06-15 Salvatore Iovene <salvatore.iovene@intel.com>
+
+	* Version 0.2.0
+	* Support new sensor: gas
+	* Implement new API: observe
+	* Refactor UI to allow inline editing
+	* Drop RGB led sensor due to UI issues
+
+2016-05-27 Salvatore Iovene <salvatore.iovene@intel.com>
+
+	* Version 0.1.0
+	* Initial release with support for the solar, fan, temperature, RGB led
+	and led sensors

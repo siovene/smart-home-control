@@ -1,6 +1,6 @@
 {
   "name": "Smart Home Control",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "dependencies": {
     "ionic": "v1.1.0",
     "ngCordova": "v0.1.20-alpha",
