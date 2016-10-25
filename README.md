@@ -22,3 +22,14 @@ You will need:
  grunt platform:add:android
  grunt run
  ```
+
+
+# How to discover resources
+
+Please refer to [here] to learn about detailed steps.
+
+This demo currently supports the following sensors : `Button, Buzzer, Mini Fan, Gas(MQ2), Ambient Light, Led, Motion, RGB Led, Solor, Switch(P) and Temperature`.
+
+After the discovery process, this demo can read and control the status of the discovered resources.
+
+[here]: https://github.com/siovene/cordova-plugin-ocf-demo/blob/master/README.md#how-to-discover-resources
