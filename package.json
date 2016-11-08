@@ -52,7 +52,7 @@
     "test": "grunt test"
   },
   "cordovaPlugins": [
-    "cordova-plugin-console"
+    "cordova-plugin-console",
     "cordova-plugin-device",
     "ionic-plugin-keyboard",
     "cordova-plugin-ocf@0.5.1"
