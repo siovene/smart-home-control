@@ -1,3 +1,8 @@
+2016-11-10 Salvatore Iovene <salvatore.iovene@intel.com>
+
+	* Verson 0.7.1
+	* Upgrade cordova plugin dependency to 0.6.1 (because it has Iotivity 1.1.1)
+
 2016-09-09 Salvatore Iovene <salvatore.iovene@intel.com>
 
 	* Version 0.6.0

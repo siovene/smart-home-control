@@ -2,7 +2,7 @@
   "name": "smarthome-control",
   "description": "An app to control a SmartHome prototype",
   "repository": "https://github.com/siovene/smart-home-control",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
   "dependencies": {},
   "devDependencies": {
@@ -55,6 +55,6 @@
     "cordova-plugin-console",
     "cordova-plugin-device",
     "ionic-plugin-keyboard",
-    "cordova-plugin-ocf@0.5.1"
+    "cordova-plugin-ocf@0.6.1"
   ]
 }
