@@ -51,6 +51,10 @@ angular.module('starter.services', [])
         '/a/binarySwitch': {
             name: 'Switch',
             icon: 'ion-toggle-filled'
+        },
+        '/a/env': {
+            name: 'Environment',
+            icon: 'ion-cloud'
         }
     };
 

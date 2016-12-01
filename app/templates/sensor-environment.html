@@ -1,0 +1,11 @@
+<span class="sensor-text-value">
+    <div class="env-info" ng-show="sensor.data.properties.temperature !== undefined">
+        T: {{sensor.data.properties.temperature}} &deg;C&nbsp;
+        RH: {{sensor.data.properties.humidity}} %&nbsp;<br/><br/>
+        P: {{sensor.data.properties.pressure}} hPa&nbsp;
+        UV: {{sensor.data.properties.uvIndex}}&nbsp;
+    </div>
+    <div ng-show="sensor.data.properties.temperature === undefined">
+        ...
+    </div>
+</span>

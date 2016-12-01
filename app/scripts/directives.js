@@ -107,4 +107,11 @@ angular.module('starter.directives', [])
         restrict: 'AE',
         templateUrl: 'templates/sensor-switch.html'
     };
+})
+
+.directive('sensorEnvironment', function() {
+    return {
+        restrict: 'AE',
+        templateUrl: 'templates/sensor-environment.html'
+    };
 });
