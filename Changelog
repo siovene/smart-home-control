@@ -1,3 +1,9 @@
+2017-01-10 Salvatore Iovene <salvatore.iovene@intel.com>
+
+	* Version 0.8.0
+	* Add support for environmental-sensor
+	* Bump plugin dependency to 0.6.2
+
 2016-11-10 Salvatore Iovene <salvatore.iovene@intel.com>
 
 	* Verson 0.7.1
