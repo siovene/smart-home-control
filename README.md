@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/siovene/smart-home-control.svg?branch=master)](https://travis-ci.org/siovene/smart-home-control)
+
 # Smart Home Control
 
 A simple app for the Cordova OCF plugin, that interfaces with a smart home prototype.

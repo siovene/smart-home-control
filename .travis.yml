@@ -1,0 +1,52 @@
+language: android
+
+jdk:
+  - oraclejdk8
+
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-23.0.1
+    - android-23
+    - android-24
+    - extra-google-m2repository
+    - extra-android-m2repository
+  licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
+
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+
+notifications:
+  email: false
+
+sudo: false
+
+branches:
+  only:
+  - master
+
+install:
+  - . $HOME/.nvm/nvm.sh
+  - nvm install stable
+  - nvm use stable
+  - npm cache clean
+  - npm install -g cordova grunt-cli bower
+  - npm install
+  - bower install
+
+before_script:
+  - cordova platform rm android
+  - grunt platform:add:android
+
+script:
+  - cordova prepare
+  - cordova build android --release
+  
+release:
+  - exit 0
