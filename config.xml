@@ -13,7 +13,7 @@
 
     <platform name="android">
         <preference name="android-minSdkVersion" value="21" />
-        <preference name="android-targetSdkVersion" value="23"/>
+        <preference name="android-targetSdkVersion" value="21"/>
         <!--
             ldpi    : 36x36 px
             mdpi    : 48x48 px
