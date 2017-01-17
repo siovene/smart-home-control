@@ -1,3 +1,7 @@
+2017-01-17 Salvatore Iovene <salvatore.iovene@intel.com>
+	* Version 0.8.1
+	* Set targetSdkVersion to 21 to match Iotivity and fix #11
+
 2017-01-10 Salvatore Iovene <salvatore.iovene@intel.com>
 
 	* Version 0.8.0
