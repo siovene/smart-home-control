@@ -55,6 +55,6 @@
     "cordova-plugin-console",
     "cordova-plugin-device",
     "ionic-plugin-keyboard",
-    "cordova-plugin-ocf@0.6.2"
+    "cordova-plugin-ocf@0.6.4"
   ]
 }
