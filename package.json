@@ -2,7 +2,7 @@
   "name": "smarthome-control",
   "description": "An app to control a SmartHome prototype",
   "repository": "https://github.com/siovene/smart-home-control",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "private": true,
   "dependencies": {},
   "devDependencies": {
