@@ -1,3 +1,8 @@
+2017-01-19 Salvatore Iovene <salvatore.iovene@intel.com>
+	* Version 0.8.3
+	* Upgrade cordova plugin dependency to 0.6.5, which contains a memory
+	management fix and the asynchronous fetching of resource properties
+
 2017-01-18 Salvatore Iovene <salvatore.iovene@intel.com>
 	* Version 0.8.2
 	* Upgrade cordova plugin dependency to 0.6.4, fixing #11
