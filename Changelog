@@ -1,3 +1,7 @@
+2017-01-23 Salvatore Iovene <salvatore.iovene@intel.com>
+	* Version 0.8.4
+	* Fixes RGB Led, which was broken to to a spec change
+
 2017-01-19 Salvatore Iovene <salvatore.iovene@intel.com>
 	* Version 0.8.3
 	* Upgrade cordova plugin dependency to 0.6.5, which contains a memory
