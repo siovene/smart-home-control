@@ -76,25 +76,53 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('RGBLedCtrl', function($scope, OCFService) {
+.controller('RGBLedCtrl', function($scope, $timeout, OCFService) {
     // TODO: embed this in the directive
 
-    var rgb = $scope.sensor.data.properties.rgbValue;
+    function setColor(rgb) {
+        if (rgb === undefined) {
+            return;
+        }
 
-    $scope.color = { r: 0, g: 0, b: 0 };
-    if (rgb !== undefined) {
-        $scope.color = {
-            r: rgb.split(',')[0],
-            g: rgb.split(',')[1],
-            b: rgb.split(',')[2]
-        };
+        $scope.color.r = rgb[0];
+        $scope.color.g = rgb[1];
+        $scope.color.b = rgb[2];
     }
 
-    $scope.$watch('color', function() {
-        $scope.sensor.data.properties.rgbValue = [
-            $scope.color.r,
-            $scope.color.g,
-            $scope.color.b].join(',');
-        OCFService.updateSensor($scope.sensor.data);
-    }, true);
+    $scope.color = {
+        r: -1,
+        g: -1,
+        b: -1
+    };
+
+    $timeout(function() {
+        $scope.$watch('color', function() {
+            var rgb = $scope.sensor.data.properties.rgbValue;
+
+            if (rgb === undefined) {
+               return;
+            }
+
+            if (
+                rgb[0] !== $scope.color.r ||
+                rgb[1] !== $scope.color.g ||
+                rgb[2] !== $scope.color.b)
+            {
+                $scope.sensor.data.properties.rgbValue = [
+                    $scope.color.r,
+                    $scope.color.g,
+                    $scope.color.b];
+                OCFService.updateSensor($scope.sensor.data);
+            }
+        }, true);
+
+        $scope.$watch(
+            function() {
+                return $scope.sensor.data.properties;
+            },
+            function() {
+                var rgb = $scope.sensor.data.properties.rgbValue;
+                setColor(rgb);
+            }, true);
+    }, 1);
 });
